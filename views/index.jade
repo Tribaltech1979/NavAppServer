@@ -1,6 +1,10 @@
 extends layout
 
-block content
-#container
-	- each user in users
-			p=user.nome
+block title
+ title Test!
+ 
+block content 
+ h1 Benvenuti al test!
+ ul
+ each user in users
+  li=user.nome+' : '+user.testo

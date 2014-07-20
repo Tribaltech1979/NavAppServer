@@ -26,12 +26,17 @@ app.use('/', routes);
 app.use('/users', users);
 
 /// MYSQL
-var mysql = require( 'mysql' ).Client,
-		client = mysql();
-		client.user = 'dev';
-		client.password = 'dev';
-		
+/*
+var mysql = require( 'mysql' );
+var connection = mysql.createConnection({
+	user : 'dev',
+	password : 'dev',
+	database : 'prova'
+	}
 
+);
+		
+*/
 
 
 

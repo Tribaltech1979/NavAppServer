@@ -1,38 +1,44 @@
 var express = require('express');
 var router = express.Router();
 
+//mysql connect	
+var mysql = require( 'mysql' );
+var connection = mysql.createConnection({
+	host :'localhost',
+	user : 'dev',
+	password : 'dev',
+	database : 'prova'
+	}
+
+);
+	
+	
+  connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }}
+  );	
+	
+	
+var stquery;
 /* GET home page. */
 router.get('/', function(req, res) {
 
-//mysql connect	
-/*	db.connect(function(error) {
-if ( error ) return console.log("Failed to connect");
-this.query()
-.select(['nome', 'testo'])
-.from('prova1')
-.execute(function(error, rows, columns) {
-if ( error ) {
-console.log("Error on query");
-} else {
-//console.log(rows);
-res.render('index', { users : rows });
-}
-});
-});
-	*/
+console.log('connesso ' + connection.threadId);
+
+  stquery = "select * from prova1";
   
-  client.connect();
-  client.query("use prova");
-  var stquery = "select * from prova1";
-  
-  client.query( stquery, function(err, rows){
+  connection.query( stquery, function(err, results){
   	if (err){
   		throw err;
   	}else{
-  		res.render('index', { users : rows });
+  		var users = results;
+  		console.log('rendering');
+  		res.render('index', {users:users});
   	}
   });
-  
+  //connection.end();
 });
 
 module.exports = router;
