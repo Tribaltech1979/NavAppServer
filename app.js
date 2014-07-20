@@ -26,15 +26,14 @@ app.use('/', routes);
 app.use('/users', users);
 
 /// MYSQL
-var mysql = require( 'db-mysql' );
+var mysql = require( 'mysql' ).Client,
+		client = mysql();
+		client.user = 'dev';
+		client.password = 'dev';
+		
 
-var connectParams = {
-'hostname': 'localhost',
-'user': 'dev',
-'password': 'dev',
-'database': 'prova'
-}
-var db = new mysql.Database( connectParams );
+
+
 
 
 /// catch 404 and forward to error handler

@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
 //mysql connect	
-	db.connect(function(error) {
+/*	db.connect(function(error) {
 if ( error ) return console.log("Failed to connect");
 this.query()
 .select(['nome', 'testo'])
@@ -19,7 +19,19 @@ res.render('index', { users : rows });
 }
 });
 });
-	
+	*/
+  
+  client.connect();
+  client.query("use prova");
+  var stquery = "select * from prova1";
+  
+  client.query( stquery, function(err, rows){
+  	if (err){
+  		throw err;
+  	}else{
+  		res.render('index', { users : rows });
+  	}
+  });
   
 });
 
